@@ -20,6 +20,32 @@
             <p class="text-center">Loading...</p>
           </div>
           <div id="content" style="display: none;">
+            
+            <h3>President</h3>
+            <table class="table">
+              
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Votes</th>
+                  <th scope="col">Roll Number</th>
+                  <th scope="col">Position</th>
+                  
+                </tr>
+              </thead>
+              <tbody id="candidatesResultsPresident">
+              </tbody>
+            </table>
+            <form>
+              <div class="form-group">
+                <label for="candidatesSelectPresident">Select Candidate</label>
+                <select class="form-control" id="candidatesSelectPresident">
+                </select>
+              </div>
+              <hr />
+            </form>
+            <h3>Academics</h3>
             <table class="table">
               <thead>
                 <tr>
@@ -27,29 +53,77 @@
                   <th scope="col">Name</th>
                   <th scope="col">Votes</th>
                   <th scope="col">Roll Number</th>
+                  <th scope="col">Position</th>
+                  
                 </tr>
               </thead>
-              <tbody id="candidatesResults">
+              <tbody id="candidatesResultsAcademics">
               </tbody>
             </table>
+            <form>
+              <div class="form-group">
+                <label for="candidatesSelectAcademics">Select Candidate</label>
+                <select class="form-control" id="candidatesSelectAcademics">
+                </select>
+              </div>
+              <hr />
+            </form>
+            <h3>Culturals</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Votes</th>
+                  <th scope="col">Roll Number</th>
+                  <th scope="col">Position</th>
+                  
+                </tr>
+              </thead>
+              <tbody id="candidatesResultsCulturals">
+              </tbody>
+            </table>
+            <form>
+              <div class="form-group">
+                <label for="candidatesSelectCulturals">Select Candidate</label>
+                <select class="form-control" id="candidatesSelectCulturals">
+                </select>
+              </div>
+              <hr />
+            </form>
+            <h3>Hostel Affairs</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Votes</th>
+                  <th scope="col">Roll Number</th>
+                  <th scope="col">Position</th>
+                  
+                </tr>
+              </thead>
+              <tbody id="candidatesResultsHostel">
+              </tbody>
+            </table>
+            <form onSubmit="App.castVote();">
+              <div class="form-group">
+                <label for="candidatesSelectHostel">Select Candidate</label>
+                <select class="form-control" id="candidatesSelectHostel">
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Vote</button>
+              <hr />
+            </form>
             <hr/>
             <p id="accountAddress" class="text-center"></p>
           </div>
         </div>
       </div>
     </div>
-    <form onSubmit="App.castVote(); return false;">
-      <div class="form-group">
-        <label for="candidatesSelect">Select Candidate</label>
-        <select class="form-control" id="candidatesSelect">
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Vote</button>
-      <hr />
-    </form>
     <h3>Do you want to nominate yourself for election</h3>
     <input type="button" id="nominate_yes" onclick="tovisible()" value="yes" />
-    <form onsubmit="App.addcandi(); return false">
+    <form onSubmit="App.addcandi();">
         <div id="select_post" style="display: none;" >
             <br />
           <label>Enter Name:</label>  

@@ -62,30 +62,92 @@ App.listenForEvents();
     });
   
     // Load contract data
-    App.contracts.Election.deployed().then(function(instance) {
+    App.contracts.Election.deployed().then((instance) => {
       electionInstance = instance;
       return electionInstance.candidatesCount();
-    }).then(function(candidatesCount) {
-      var candidatesResults = $("#candidatesResults");
-      candidatesResults.empty();
+    }).then((candidatesCount) => {
+
+      var candidatesResultsCulturals = $("#candidatesResultsCulturals");
+      candidatesResultsCulturals.empty();
+
+      var candidatesResultsPresident = $("#candidatesResultsPresident");
+      candidatesResultsPresident.empty();
+
+      var candidatesResultsHostel = $("#candidatesResultsHostel");
+      candidatesResultsHostel.empty();
+
+      var candidatesResultsAcademics = $("#candidatesResultsAcademics");
+      candidatesResultsAcademics.empty();
   
-      var candidatesSelect = $('#candidatesSelect');
-      candidatesSelect.empty();
-  
+
+    //
+
+      var candidatesSelectPresident = $('#candidatesSelectPresident');
+      candidatesSelectPresident.empty();
+
+      var candidatesSelectCulturals = $('#candidatesSelectCulturals');
+      candidatesSelectCulturals.empty();
+
+      var candidatesSelectAcademics = $('#candidatesSelectAcademics');
+      candidatesSelectAcademics.empty();
+
+      var candidatesSelectHostel = $('#candidatesSelectHostel');
+      candidatesSelectHostel.empty();
+
+      
       for (var i = 1; i <= candidatesCount; i++) {
         electionInstance.candidates(i).then(function(candidate) {
           var id = candidate[0];
           var name = candidate[1];
           var voteCount = candidate[2];
           var roll = candidate[3];
-  
+          var position = candidate[4];
+          var serialcount = candidate[5];
+          
+          
+          var candidateTemplate = "<tr><th>" + serialcount + "</th><td>" + name + "</td><td>" + voteCount + "</td><td>" + roll + "</td><td>" + position + "</td></tr>"
           // Render candidate Result
-          var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td><td>" + roll +"</td></tr>"
-          candidatesResults.append(candidateTemplate);
-  
+          if(position === "General Secretary, President")
+          {
+          candidatesResultsPresident.append(candidateTemplate);
+          }
+          else if(position === "General Secretary, Culturals")
+          {
+            candidatesResultsCulturals.append(candidateTemplate);
+          }
+
+          else if(position === "General Secretary, Hostel Affairs")
+          {
+            candidatesResultsHostel.append(candidateTemplate);
+          }
+
+          else if(position === "General Secretary, Academics")
+          {
+            candidatesResultsAcademics.append(candidateTemplate);
+          }
           // Render candidate ballot option
           var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-          candidatesSelect.append(candidateOption);
+         
+          if(position === "General Secretary, President")
+          {
+          candidatesSelectPresident.append(candidateOption);
+          }
+
+          else if(position === "General Secretary, Culturals")
+          {
+            candidatesSelectCulturals.append(candidateOption);
+          }
+
+          else if(position === "General Secretary, Hostel Affairs")
+          {
+            candidatesSelectHostel.append(candidateOption);
+          }
+
+          else if(position === "General Secretary, Academics")
+          {
+            candidatesSelectAcademics.append(candidateOption);
+          }
+
         });
       }
       return electionInstance.voters(App.account);
@@ -102,16 +164,31 @@ App.listenForEvents();
   },
 
   castVote: function() {
-    var candidateId = $('#candidatesSelect').val();
-    App.contracts.Election.deployed().then(function(instance) {
-      return instance.vote(candidateId, { from: App.account });
-    }).then(function(result) {
-      // Wait for votes to update
-      $("#content").hide();
-      $("#loader").show();
-    }).catch(function(err) {
+    App.contracts.Election.deployed().then((instance) => {
+      return instance.vote($('#candidatesSelectPresident').val(), "General Secretary, President", { from: App.account });
+    }).catch((err) => {
       console.error(err);
     });
+
+    App.contracts.Election.deployed().then((instance) => {
+      return instance.vote($('#candidatesSelectCulturals').val(), "General Secretary, Culturals", { from: App.account });
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    App.contracts.Election.deployed().then((instance) => {
+      return instance.vote($('#candidatesSelectHostel').val(), "General Secretary, Hostel Affairs", { from: App.account });
+    }).catch((err) => {
+      console.log(err);
+    });
+      
+
+    App.contracts.Election.deployed().then((instance) => {
+      return instance.vote($('#candidatesSelectAcademics').val(), "General Secretary, Academics", { from: App.account });
+    }).catch((err) => {
+      console.log(err);
+    });
+
   },
   addcandi: function(){
 
