@@ -4,20 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Election Results</title>
-
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link type="text/css" href="./css/styles.css" rel="stylesheet">
+    <title>Election Results</title>
   </head>
   <body>
-    <div class="container" style="width: 650px;">
-      <div class="row">
+    <div class="container">
+      <div class="row select_elect">
         <div class="col-lg-12">
-          <h1 class="text-center">Election Results</h1>
+          <h1 class="head_center">Election Results</h1>
           <hr/>
           <br/>
           <div id="loader">
-            <p class="text-center">Loading...</p>
+            <p class="load_center">Loading...</p>
           </div>
           <div id="content" style="display: none;">
             
@@ -116,35 +117,39 @@
               <hr />
             </form>
             <hr/>
-            <p id="accountAddress" class="text-center"></p>
+            <p id="accountAddress" class="text_center"></p>
           </div>
         </div>
       </div>
-    </div>
-    <h3>Do you want to nominate yourself for election</h3>
-    <input type="button" id="nominate_yes" onclick="tovisible()" value="yes" />
-    <form onSubmit="App.addcandi();">
+    
+    <hr />
+
+    <div class="row join_elect">
+    <h1>Do you want to nominate yourself for election?</h1>
+    <input type="button" class="btn_yes" id="nominate_yes" onclick="tovisible()" value="YES" />
+    <form class="sel_post" onSubmit="App.addcandi();">
         <div id="select_post" style="display: none;" >
-            <br />
-          <label>Enter Name:</label>  
-          <input type="text" id="cand_name" />
-          <br />
-          <label> Enter roll number</label>
-          <input type="text" id="cand_roll" />
-          <br />
-          <label>Select post</label>
-          <select id="candpost">
+          <br></br>
+          <label class="nom_label">Enter Name:</label>  
+          <input type="text" class="nom_input" id="cand_name" />
+          <br></br>
+          <label class="nom_label"> Enter roll number:</label>
+          <input type="text" class="nom_input" id="cand_roll" />
+          <br></br>
+          <label class="nom_label">Select post</label>
+          <select id="candpost" class="nom_input">
             <option>General Secretary, President</option>
             <option>General Secretary, Hostel Affairs</option>
             <option>General Secretary, Culturals</option>
             <option>General Secretary, Academics</option>
             </select>
-          <button type="submit">Submit</button>
+          <button type="submit" class="nom_submit">Submit</button>
          </div>
     </form>
-    <br />
-    <input type="submit" id="nominate_no" onclick="tohide()" value="No">
-
+    <br></br>
+    <input type="submit" class="btn_no" id="nominate_no" onclick="tohide()" value="NO">
+    </div>
+   </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
