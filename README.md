@@ -12,6 +12,7 @@ A decentralized application for voting built on Ethereum blockchain where users 
 3. JavaScript (to write client side application)
 4. Truffle (provides tools to create smart contacts with the Solidity programming language, test and deploy them to the blockchain)
 5. Ganache (to create private blockchain network for testing on localhost)
+6. Metamask (browser extension which provides cryptocurrency wallet to interact with Ethereum Blockchain)
 ## Contributors
 1. Manish Tirkey
 2. Shiva Shukla
